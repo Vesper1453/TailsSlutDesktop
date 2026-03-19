@@ -72,31 +72,19 @@ When using **i3 tiling window manager**, you can instantly switch modes with hot
 
 ---
 
-## 🚀 Quick Start
-
-### Option 1: i3 Window Manager (Recommended for degenerates)
+## ⚡ Quick Install
 
 ```bash
-# 1. Install i3 and required packages
-sudo apt-get install i3 i3-wm picom nitrogen kitty rofi polybar
-
-# 2. Run setup
-cd ~/TailsSlutDesktop
-./install.sh
-# Select option 1 (i3) when prompted
-
-# 3. Log out and select 'i3' from session menu
-# 4. Press Alt+F1 for instant degeneracy! 🔥
+# One-line install (works on any Tails system with internet)
+curl -fsSL https://raw.githubusercontent.com/Vesper1453/TailsSlutDesktop/main/install.sh | bash
 ```
 
-### Option 2: GNOME/GTK (Standard desktop)
+Or clone manually:
 
 ```bash
-cd ~/TailsSlutDesktop
+git clone https://github.com/Vesper1453/TailsSlutDesktop.git
+cd TailsSlutDesktop
 ./install.sh
-# Select option 2 (GNOME) or 3 (Both)
-
-# Use desktop shortcuts to switch modes
 ```
 
 ---
