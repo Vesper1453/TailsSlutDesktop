@@ -21,11 +21,13 @@ detect_distro() {
         . /etc/os-release
         DISTRO=$ID
         DISTRO_LIKE=$ID_LIKE
+        DISTRO_NAME=$NAME
     else
         DISTRO="unknown"
+        DISTRO_NAME="Unknown Linux"
     fi
     
-    # Check if Arch-based
+    # Check if Arch-based (including EndeavourOS)
     if [[ "$DISTRO" == "arch" ]] || [[ "$DISTRO" == "endeavouros" ]] || [[ "$DISTRO_LIKE" == *"arch"* ]]; then
         IS_ARCH=true
         PACKAGE_MANAGER="pacman"
@@ -39,14 +41,27 @@ detect_distro() {
             AUR_HELPER="paru"
         fi
         
-        echo -e "${PINK}💋 Arch Linux detected! Using pacman...${RESET}"
+        if [[ "$DISTRO" == "endeavouros" ]]; then
+            echo -e "${PINK}🚀 EndeavourOS detected! Using pacman + yay...${RESET}"
+            # Auto-install yay if not present on EndeavourOS
+            if [ -z "$AUR_HELPER" ]; then
+                echo -e "${HOT_PINK}💋 Installing yay AUR helper for you...${RESET}"
+                sudo pacman -S --needed --noconfirm git base-devel
+                git clone https://aur.archlinux.org/yay.git /tmp/yay
+                cd /tmp/yay && makepkg -si --noconfirm
+                cd -
+                AUR_HELPER="yay"
+            fi
+        else
+            echo -e "${PINK}🏹 Arch Linux detected! Using pacman...${RESET}"
+        fi
     else
         IS_ARCH=false
         PACKAGE_MANAGER="apt"
         INSTALL_CMD="sudo apt-get install -y"
         AUR_HELPER=""
         
-        echo -e "${PINK}💋 Debian/Ubuntu detected! Using apt...${RESET}"
+        echo -e "${PINK}💋 Debian/Ubuntu/Tails detected! Using apt...${RESET}"
     fi
 }
 

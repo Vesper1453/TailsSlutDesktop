@@ -1,16 +1,16 @@
-# 🍆💦 Tails Slut Desktop - The Most Depraved Linux Experience 💋🔥
+# 🍆💦 EndeavourOS Slut Desktop - The Most Depraved Arch Linux Experience 💋🔥
 
-A fully customized Linux desktop environment with three deliciously explicit modes for all your whorish computing needs.
+A fully customized EndeavourOS/Arch Linux desktop environment with three deliciously explicit modes for all your whorish computing needs.
 
-**✅ Works on:**
-- 🔒 Tails Linux (Debian-based)
-- 🏹 Arch Linux
-- 🚀 EndeavourOS (and other Arch-based distros)
+**✅ Optimized for:**
+- 🚀 **EndeavourOS** (Primary - Best experience)
+- 🏹 **Arch Linux** (Fully supported)
+- 🔒 Tails Linux (Debian - Secondary support)
 
-## ⚡ Quick Install
+## ⚡ Quick Install on EndeavourOS/Arch
 
 ```bash
-# One-line install (works on any supported distro with internet)
+# One-line install for Arch/EndeavourOS
 curl -fsSL https://raw.githubusercontent.com/Vesper1453/TailsSlutDesktop/main/install.sh | bash
 ```
 
@@ -19,7 +19,7 @@ Or clone manually:
 ```bash
 git clone https://github.com/Vesper1453/TailsSlutDesktop.git
 cd TailsSlutDesktop
-./install.sh
+./install.sh --full
 ```
 
 ## 🎭 Available Modes
