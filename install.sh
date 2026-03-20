@@ -116,10 +116,11 @@ show_menu() {
     echo "  4) 📦 Install packages only"
     echo "  5) 🚨 Install Panic Button only"
     echo "  6) 🎬 Install Terminal Video Viewer only"
-    echo "  7) 📋 Show package list"
-    echo "  8) ❌ Exit"
+    echo "  7) 🍆 Create Adult Sites Shortcuts only"
+    echo "  8) 📋 Show package list"
+    echo "  9) ❌ Exit"
     echo ""
-    read -p "Enter choice [1-8]: " choice
+    read -p "Enter choice [1-9]: " choice
     
     case $choice in
         1) full_install ;;
@@ -128,8 +129,9 @@ show_menu() {
         4) install_packages ;;
         5) install_panic_button ;;
         6) install_video_viewer ;;
-        7) show_packages ;;
-        8) exit 0 ;;
+        7) create_adult_shortcuts ;;
+        8) show_packages ;;
+        9) exit 0 ;;
         *) echo -e "${RED}Invalid choice${RESET}"; show_menu ;;
     esac
 }
@@ -349,6 +351,66 @@ show_packages() {
     cat "$SCRIPT_DIR/PACKAGES.md"
 }
 
+create_adult_shortcuts() {
+    echo -e "${RED}🍆💦 Creating Adult Sites Desktop Shortcuts... 💋🔥${RESET}"
+    
+    mkdir -p ~/Desktop
+    
+    # Mainstream Porn Sites
+    echo -e "${HOT_PINK}📁 Creating mainstream porn shortcuts...${RESET}"
+    
+    create_shortcut "🔞-Pornhub" "https://pornhub.com" "video-x-generic"
+    create_shortcut "🔞-Xvideos" "https://xvideos.com" "video-x-generic"
+    create_shortcut "🔞-Xnxx" "https://xnxx.com" "video-x-generic"
+    create_shortcut "🔞-Redtube" "https://redtube.com" "video-x-generic"
+    create_shortcut "🔞-Youporn" "https://youporn.com" "video-x-generic"
+    create_shortcut "🔞-Tube8" "https://tube8.com" "video-x-generic"
+    create_shortcut "🔞-Spankbang" "https://spankbang.com" "video-x-generic"
+    create_shortcut "🔞-xHamster" "https://xhamster.com" "video-x-generic"
+    
+    # Cam/OnlyFans Sites
+    echo -e "${HOT_PINK}📁 Creating cam site shortcuts...${RESET}"
+    
+    create_shortcut "🎥-Chaturbate" "https://chaturbate.com" "camera-video"
+    create_shortcut "🎥-CamSoda" "https://camsoda.com" "camera-video"
+    create_shortcut "🎥-Stripchat" "https://stripchat.com" "camera-video"
+    create_shortcut "🎥-BongaCams" "https://bongacams.com" "camera-video"
+    create_shortcut "🎥-MyFreeCams" "https://myfreecams.com" "camera-video"
+    create_shortcut "🎥-JerkMate" "https://jerkmate.com" "camera-video"
+    
+    # Hentai/Rule34 Sites
+    echo -e "${HOT_PINK}📁 Creating hentai shortcuts...${RESET}"
+    
+    create_shortcut "🦊-HentaiHaven" "https://hentaihaven.org" "image-x-generic"
+    create_shortcut "🦊-Rule34" "https://rule34.xxx" "image-x-generic"
+    create_shortcut "🦊-E621" "https://e621.net" "image-x-generic"
+    create_shortcut "🦊-Gelbooru" "https://gelbooru.com" "image-x-generic"
+    create_shortcut "🦊-Danbooru" "https://danbooru.donmai.us" "image-x-generic"
+    create_shortcut "🦊-E-Hentai" "https://e-hentai.org" "image-x-generic"
+    
+    echo ""
+    echo -e "${GREEN}✅ Adult sites shortcuts created!${RESET}"
+    echo -e "${PINK}   Location: ~/Desktop/${RESET}"
+    echo -e "${PINK}   Total: 17 shortcuts${RESET}"
+}
+
+# Helper function to create individual shortcut
+create_shortcut() {
+    local name=$1
+    local url=$2
+    local icon=$3
+    
+    echo "[Desktop Entry]" > ~/Desktop/${name}.desktop
+    echo "Name=${name}" >> ~/Desktop/${name}.desktop
+    echo "Comment=Launch ${name}" >> ~/Desktop/${name}.desktop
+    echo "Exec=firefox ${url}" >> ~/Desktop/${name}.desktop
+    echo "Type=Application" >> ~/Desktop/${name}.desktop
+    echo "Terminal=false" >> ~/Desktop/${name}.desktop
+    echo "Icon=${icon}" >> ~/Desktop/${name}.desktop
+    echo "Categories=AudioVideo;" >> ~/Desktop/${name}.desktop
+    chmod +x ~/Desktop/${name}.desktop
+}
+
 # Check if running with arguments
 if [ -n "$1" ]; then
     case "$1" in
@@ -358,6 +420,7 @@ if [ -n "$1" ]; then
         --packages) install_packages ;;
         --panic) install_panic_button ;;
         --video) install_video_viewer ;;
+        --adult) create_adult_shortcuts ;;
         *) show_menu ;;
     esac
 else
